@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: odevim
+  labels:
+    name: odevim
+    app: odevim1
+spec:
+  containers:
+    - name: odevim-container
+      image: seyma1km/spering-html
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: odev-service
+spec:
+  type: NodePort
+  selector:
+    app: odevim1
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30005
